@@ -5,32 +5,178 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="https://unpkg.com/alpinejs@3.10.4/dist/cdn.min.js"></script>
   <title>Simple Tailwind Starter</title>
 </head>
-<body>
-  <nav class="container p-6 mx-auto">
-    <div class="flex flex-row items-start justify-between space-x-12">
-      <img src="images/logo.svg" alt=""/>
-      <div class="flex flex-1 space-x-6">
-        <div class="flex items-center">
-          <a href="#" class="text-xs mr-2 text-gray-500">Features</a>
-          <img src="images/icon-arrow-down.svg" alt="">
-        </div>
-        <div class="flex items-center">
-          <a href="#" class="text-xs mr-2 text-gray-500">Company</a>
-          <img src="images/icon-arrow-down.svg" alt="">
-        </div>        
-        <a href="#" class="text-xs text-gray-500">Careers</a>
-        <a href="#" class="text-xs text-gray-500">About</a>
-      </div>
-      <div class="flex items-start space-x-8">
-        <a href="#" class="text-xs text-gray-500">Login</a>
-        <a href="#" class="text-xs text-gray-500 rounded-xl border-solid border-2 border-gray-500 py-2 -mt-3 px-5">Register</a>
-      </div>
+<body class="relative">
+  
+  <div 
+    x-data="{
+      open: false,
+      toggle() {
+        this.open = ! this.open
+      },
+      close() {
+        this.open = false
+      },
+      menu: [false, false],
+      toggleMenu(index) {
+        this.menu[index] = ! this.menu[index]
+      },
+      closeMenu(index) {
+        this.menu[index] = false
+      }
+    }"
+    @keydown.escape.prevent.stop="close()">
+    <div
+      x-show="open"
+      class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75 md:bg-opacity-0">
     </div>
-    
-  </nav>
+        
+    <section id="nav">
+      <nav class="w-full p-6">
+        <div class="flex flex-row items-start justify-between space-x-12">
+          <img src="images/logo.svg" alt=""/>
+          <div class="flex-1 hidden space-x-6 md:flex">
+            <div
+              @click="toggleMenu(0)" 
+              class="relative flex items-center">
+              <a href="#" class="mr-2 text-xs text-gray-600">Features</a>
+              <img x-show="menu[0]" src="images/icon-arrow-up.svg" alt="">
+              <img x-show="!menu[0]" src="images/icon-arrow-down.svg" alt="">
+              <div
+                x-show="menu[0]"
+                @click.outside="closeMenu(0)"
+                class="absolute top-0 right-0 flex flex-col items-start w-32 p-6 mt-6 space-y-2 text-xs bg-white shadow-xl rounded-xl">
+                <a href="#">
+                  <div class="flex flex-row items-center justify-between space-x-2">
+                    <img class="w-3" src="images/icon-todo.svg" alt=""/>
+                    <p>Todo List</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="flex flex-row items-center justify-between space-x-2">
+                    <img class="w-3" src="images/icon-calendar.svg" alt=""/>
+                    <p>Calendar</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="flex flex-row items-center justify-between space-x-2">
+                    <img class="w-3" src="images/icon-reminders.svg" alt=""/>
+                    <p>Reminders</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="flex flex-row items-center justify-between space-x-2">
+                    <img class="w-3" src="images/icon-planning.svg" alt=""/>
+                    <p>Planning</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div
+              @click="toggleMenu(1)" 
+              class="relative flex items-center">
+              <a href="#" class="mr-2 text-xs text-gray-600">Company</a>
+              <img x-show="menu[1]" src="images/icon-arrow-up.svg" alt="">
+              <img x-show="!menu[1]" src="images/icon-arrow-down.svg" alt="">
+              <div
+                x-show="menu[1]"
+                @click.outside="closeMenu(1)"
+                class="absolute top-0 left-0 flex flex-col items-start w-32 p-6 mt-6 space-y-2 text-xs bg-white shadow-xl rounded-xl">
+                <a href="#">History</a>
+                <a href="#">Our Team</a>
+                <a href="#">Blog</a>
+              </div>
+            </div>        
+            <a href="#" class="text-xs text-gray-600">Careers</a>
+            <a href="#" class="text-xs text-gray-600">About</a>
+          </div>
+          <div class="items-start hidden space-x-8 md:flex">
+            <a href="#" class="text-xs text-gray-600">Login</a>
+            <a href="#" class="w-full px-4 py-2 -mt-2 text-xs text-gray-600 border-2 border-gray-500 border-solid rounded-xl">Register</a>
+          </div>
+          <!--Hamburger button-->
+          <button 
+            x-ref="menubutton"
+            @click="toggle()"
+            type="button" 
+            class="block hamburger focus:outline-none md:hidden">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+          </button>
+        </div>
 
+        <!--Mobile menu-->
+        <div 
+          x-ref="menupanel"
+          x-show="open"
+          @click.outside="close()"
+          class="absolute top-0 bottom-0 right-0 z-10 w-2/3 min-h-screen p-6 bg-white md:hidden">
+          <div class="flex flex-col items-start justify-center mb-8 space-y-4">
+            <div class="flex justify-end w-full">
+              <!--Hamburger button-->
+              <button 
+                x-ref="menubutton"
+                @click="toggle()"
+                type="button" 
+                class="block open hamburger focus:outline-none">
+                <span class="hamburger-top"></span>
+                <span class="hamburger-middle"></span>
+                <span class="hamburger-bottom"></span>
+              </button>
+            </div>
+            <div
+              @click="toggleMenu(0)" 
+              class="flex items-center">
+              <a href="#" class="mr-2 text-sm text-gray-600">Features</a>
+              <img x-show="menu[0]" src="images/icon-arrow-down.svg" alt="">
+              <img x-show="!menu[0]" src="images/icon-arrow-up.svg" alt="">
+            </div>
+            <div 
+              @click="toggleMenu(1)" 
+              class="flex items-center">
+              <a href="#" class="mr-2 text-sm text-gray-600">Company</a>
+              <img x-show="menu[1]" src="images/icon-arrow-down.svg" alt="">
+              <img x-show="!menu[1]" src="images/icon-arrow-up.svg" alt="">
+            </div>
+            <a href="#" class="mr-2 text-sm text-gray-600">Careers</a>
+            <a href="#" class="mr-2 text-sm text-gray-600">About</a>
+          </div>
+          <div class="flex flex-col items-center space-y-4">
+            <a href="#" class="text-sm text-gray-600">Login</a>
+            <a href="#" class="w-full px-4 py-2 text-sm text-center text-gray-600 border-2 border-gray-400 border-solid rounded-2xl">Register</a>        
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section id="main" class="container max-w-4xl pb-20 mx-auto mt-4">
+      <div class="flex flex-col items-center mr-2 md:flex-row md:items-end">
+        <div class="block max-w-xl mb-10 md:hidden">
+          <img src="images/image-hero-mobile.png" alt=""/>
+        </div>
+        <div class="flex flex-col items-center justify-between max-w-xl p-6 md:items-start md:w-3/5">
+          <h1 class="mb-6 text-5xl font-bold md:text-6xl md:hidden">Make remote work</h1>
+          <h1 class="hidden mb-8 text-5xl font-bold md:text-6xl md:block">Make<br/>remote work</h1>
+          <p class="block max-w-xs mb-6 text-sm">Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</p>
+          <button class="px-4 py-2 text-sm text-white duration-100 bg-black border border-gray-600 mb-14 rounded-xl hover:text-gray-600 hover:bg-white">
+            Learn more
+          </button>
+          <div class="flex flex-row items-center justify-between w-full md:max-w-sm">
+            <img class="w-20" src="images/client-databiz.svg" alt=""/>
+            <img class="w-14" src="images/client-audiophile.svg" alt=""/>
+            <img class="w-16" src="images/client-meet.svg" alt=""/>
+            <img class="w-16" src="images/client-maker.svg" alt=""/>
+          </div>
+        </div>
+        <div class="hidden max-w-xl p-6 md:w-2/5 md:block">
+          <img src="images/image-hero-desktop.png" alt=""/>
+        </div>
+      </div>
+    </section>
+  </div>
 
 </body>
 </html>
