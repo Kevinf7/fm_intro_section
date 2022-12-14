@@ -18,6 +18,13 @@
       },
       close() {
         this.open = false
+      },
+      menu: [false, false],
+      toggleMenu(index) {
+        this.menu[index] = ! this.menu[index]
+      },
+      closeMenu(index) {
+        this.menu[index] = false
       }
     }"
     @keydown.escape.prevent.stop="close()">
@@ -31,11 +38,16 @@
         <div class="flex flex-row items-start justify-between space-x-12">
           <img src="images/logo.svg" alt=""/>
           <div class="flex-1 hidden space-x-6 md:flex">
-            <div class="relative flex items-center pb-4 group">
-              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold">Features</a>
-              <img class="hidden group-hover:block" src="images/icon-arrow-up.svg" alt="">
-              <img class="block group-hover:hidden" src="images/icon-arrow-down.svg" alt="">
-              <div class="absolute right-0 flex-col items-start hidden w-32 p-6 space-y-2 text-xs bg-white shadow-xl top-6 group-hover:flex hover:flex rounded-xl">
+            <div
+              @click="toggleMenu(0)" 
+              class="relative flex items-center">
+              <a href="#" class="mr-2 text-xs text-gray-600">Features</a>
+              <img x-show="menu[0]" src="images/icon-arrow-up.svg" alt="">
+              <img x-show="!menu[0]" src="images/icon-arrow-down.svg" alt="">
+              <div
+                x-show="menu[0]"
+                @click.outside="closeMenu(0)"
+                class="absolute top-0 right-0 flex flex-col items-start w-32 p-6 mt-6 space-y-2 text-xs bg-white shadow-xl rounded-xl">
                 <a href="#">
                   <div class="flex flex-row items-center justify-between space-x-2">
                     <img class="w-3" src="images/icon-todo.svg" alt=""/>
@@ -62,11 +74,16 @@
                 </a>
               </div>
             </div>
-            <div class="relative flex items-center pb-4 group">
-              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold">Company</a>
-              <img class="hidden group-hover:block" src="images/icon-arrow-up.svg" alt="">
-              <img class="block group-hover:hidden" src="images/icon-arrow-down.svg" alt="">
-              <div class="absolute left-0 flex-col items-start hidden w-32 p-6 space-y-2 text-xs bg-white shadow-xl top-6 group-hover:flex hover:flex rounded-xl">
+            <div
+              @click="toggleMenu(1)" 
+              class="relative flex items-center">
+              <a href="#" class="mr-2 text-xs text-gray-600">Company</a>
+              <img x-show="menu[1]" src="images/icon-arrow-up.svg" alt="">
+              <img x-show="!menu[1]" src="images/icon-arrow-down.svg" alt="">
+              <div
+                x-show="menu[1]"
+                @click.outside="closeMenu(1)"
+                class="absolute top-0 left-0 flex flex-col items-start w-32 p-6 mt-6 space-y-2 text-xs bg-white shadow-xl rounded-xl">
                 <a href="#">History</a>
                 <a href="#">Our Team</a>
                 <a href="#">Blog</a>
