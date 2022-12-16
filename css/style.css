@@ -672,12 +672,16 @@ video {
   margin-bottom: 3.5rem;
 }
 
-.block {
-  display: block;
+.ml-8 {
+  margin-left: 2rem;
 }
 
-.inline-block {
-  display: inline-block;
+.ml-6 {
+  margin-left: 1.5rem;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -718,6 +722,10 @@ video {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .max-w-4xl {
@@ -798,6 +806,18 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.space-y-16 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(4rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(4rem * var(--tw-space-y-reverse));
 }
 
 .rounded-xl {
@@ -979,32 +999,9 @@ video {
   visibility: hidden;
 }
 
-.before\:static::before {
-  content: var(--tw-content);
-  position: static;
-}
-
-.before\:absolute::before {
-  content: var(--tw-content);
-  position: absolute;
-}
-
-.before\:-inset-1::before {
-  content: var(--tw-content);
-  top: -0.25rem;
-  right: -0.25rem;
-  bottom: -0.25rem;
-  left: -0.25rem;
-}
-
 .before\:block::before {
   content: var(--tw-content);
   display: block;
-}
-
-.before\:hidden::before {
-  content: var(--tw-content);
-  display: none;
 }
 
 .before\:h-0::before {
@@ -1012,19 +1009,9 @@ video {
   height: 0px;
 }
 
-.before\:overflow-hidden::before {
-  content: var(--tw-content);
-  overflow: hidden;
-}
-
 .before\:font-bold::before {
   content: var(--tw-content);
   font-weight: 700;
-}
-
-.before\:content-\[\'Careers\'\]::before {
-  --tw-content: 'Careers';
-  content: var(--tw-content);
 }
 
 .before\:content-\[\'Features\'\]::before {
@@ -1037,18 +1024,23 @@ video {
   content: var(--tw-content);
 }
 
+.before\:content-\[\'Careers\'\]::before {
+  --tw-content: 'Careers';
+  content: var(--tw-content);
+}
+
 .before\:content-\[\'About\'\]::before {
   --tw-content: 'About';
   content: var(--tw-content);
 }
 
-.after\:invisible::after {
+.before\:content-\[\'Login\'\]::before {
+  --tw-content: 'Login';
   content: var(--tw-content);
-  visibility: hidden;
 }
 
-.after\:content-\[\'Careers\'\]::after {
-  --tw-content: 'Careers';
+.before\:content-\[\'Register\'\]::before {
+  --tw-content: 'Register';
   content: var(--tw-content);
 }
 

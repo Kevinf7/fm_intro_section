@@ -18,6 +18,13 @@
       },
       close() {
         this.open = false
+      },
+      menu: [false, false],
+      toggleMenu(index) {
+        this.menu[index] = ! this.menu[index]
+      },
+      closeMenu(index) {
+        this.menu[index] = false
       }
     }"
     @keydown.escape.prevent.stop="close()">
@@ -76,8 +83,8 @@
             <a href="#" class="text-xs text-gray-600 before:invisible before:content-['About'] before:block before:h-0 before:font-bold hover:font-bold">About</a>
           </div>
           <div class="items-start hidden space-x-8 md:flex">
-            <a href="#" class="text-xs text-gray-600">Login</a>
-            <a href="#" class="w-full px-4 py-2 -mt-2 text-xs text-gray-600 border-2 border-gray-500 border-solid rounded-xl">Register</a>
+            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['Login'] before:block before:h-0 before:font-bold hover:font-bold">Login</a>
+            <a href="#" class="w-full px-4 py-2 -mt-2 text-xs text-gray-600 border-2 border-gray-500 border-solid rounded-xl before:invisible before:content-['Register'] before:block before:h-0 before:font-bold hover:font-bold">Register</a>
           </div>
           <!--Hamburger button-->
           <button 
@@ -117,12 +124,47 @@
               <img x-show="menu[0]" src="images/icon-arrow-down.svg" alt="">
               <img x-show="!menu[0]" src="images/icon-arrow-up.svg" alt="">
             </div>
+            <div
+              x-show="menu[0]" 
+              class="flex-col items-start ml-6 space-y-2 text-sm text-gray-600">
+              <a class="block" href="#">
+                <div class="flex flex-row items-center space-x-2">
+                  <img class="w-3" src="images/icon-todo.svg" alt=""/>
+                  <p>Todo List</p>
+                </div>
+              </a>
+              <a class="block" href="#">
+                <div class="flex flex-row items-center space-x-2">
+                  <img class="w-3" src="images/icon-calendar.svg" alt=""/>
+                  <p>Calendar</p>
+                </div>
+              </a>
+              <a class="block" href="#">
+                <div class="flex flex-row items-center space-x-2">
+                  <img class="w-3" src="images/icon-reminders.svg" alt=""/>
+                  <p>Reminders</p>
+                </div>
+              </a>
+              <a class="block" href="#">
+                <div class="flex flex-row items-center space-x-2">
+                  <img class="w-3" src="images/icon-planning.svg" alt=""/>
+                  <p>Planning</p>
+                </div>
+              </a>
+            </div>
             <div 
               @click="toggleMenu(1)" 
               class="flex items-center">
               <a href="#" class="mr-2 text-sm text-gray-600">Company</a>
               <img x-show="menu[1]" src="images/icon-arrow-down.svg" alt="">
               <img x-show="!menu[1]" src="images/icon-arrow-up.svg" alt="">
+            </div>
+            <div 
+              x-show="menu[1]" 
+              class="flex-col items-start ml-6 space-y-2 text-sm text-gray-600">
+              <a class="block" href="#">History</a>
+              <a class="block" href="#">Our Team</a>
+              <a class="block" href="#">Blog</a>
             </div>
             <a href="#" class="mr-2 text-sm text-gray-600">Careers</a>
             <a href="#" class="mr-2 text-sm text-gray-600">About</a>
