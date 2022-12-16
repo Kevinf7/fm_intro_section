@@ -592,10 +592,6 @@ video {
   }
 }
 
-.invisible {
-  visibility: hidden;
-}
-
 .fixed {
   position: fixed;
 }
@@ -631,20 +627,8 @@ video {
   bottom: 0px;
 }
 
-.top-4 {
-  top: 1rem;
-}
-
 .top-6 {
   top: 1.5rem;
-}
-
-.top-8 {
-  top: 2rem;
-}
-
-.top-7 {
-  top: 1.75rem;
 }
 
 .z-10 {
@@ -690,6 +674,10 @@ video {
 
 .block {
   display: block;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 .flex {
@@ -888,10 +876,6 @@ video {
   padding-bottom: 1rem;
 }
 
-.pb-6 {
-  padding-bottom: 1.5rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -995,14 +979,32 @@ video {
   visibility: hidden;
 }
 
-.before\:mr-2::before {
+.before\:static::before {
   content: var(--tw-content);
-  margin-right: 0.5rem;
+  position: static;
+}
+
+.before\:absolute::before {
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.before\:-inset-1::before {
+  content: var(--tw-content);
+  top: -0.25rem;
+  right: -0.25rem;
+  bottom: -0.25rem;
+  left: -0.25rem;
 }
 
 .before\:block::before {
   content: var(--tw-content);
   display: block;
+}
+
+.before\:hidden::before {
+  content: var(--tw-content);
+  display: none;
 }
 
 .before\:h-0::before {
@@ -1015,15 +1017,29 @@ video {
   overflow: hidden;
 }
 
-.before\:text-xs::before {
-  content: var(--tw-content);
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .before\:font-bold::before {
   content: var(--tw-content);
   font-weight: 700;
+}
+
+.before\:content-\[\'Careers\'\]::before {
+  --tw-content: 'Careers';
+  content: var(--tw-content);
+}
+
+.before\:content-\[\'Features\'\]::before {
+  --tw-content: 'Features';
+  content: var(--tw-content);
+}
+
+.before\:content-\[\'Company\'\]::before {
+  --tw-content: 'Company';
+  content: var(--tw-content);
+}
+
+.before\:content-\[\'About\'\]::before {
+  --tw-content: 'About';
+  content: var(--tw-content);
 }
 
 .after\:invisible::after {
@@ -1031,15 +1047,9 @@ video {
   visibility: hidden;
 }
 
-.after\:mr-2::after {
+.after\:content-\[\'Careers\'\]::after {
+  --tw-content: 'Careers';
   content: var(--tw-content);
-  margin-right: 0.5rem;
-}
-
-.after\:text-xs::after {
-  content: var(--tw-content);
-  font-size: 0.75rem;
-  line-height: 1rem;
 }
 
 .hover\:flex:hover {
@@ -1049,6 +1059,10 @@ video {
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:font-bold:hover {
+  font-weight: 700;
 }
 
 .hover\:text-gray-600:hover {
