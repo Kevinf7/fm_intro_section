@@ -30,6 +30,7 @@
     @keydown.escape.prevent.stop="close()">
     <div
       x-show="open"
+      x-transition.opacity
       class="fixed inset-0 transition-opacity bg-gray-900 bg-opacity-75 md:bg-opacity-0">
     </div>
         
@@ -39,11 +40,11 @@
           <img src="images/logo.svg" alt=""/>
           <div class="flex-1 hidden space-x-6 md:flex">
             <div class="relative flex items-center pb-4 group">
-              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold before:invisible before:content-['Features'] before:block before:h-0 before:font-bold">Features</a>
+              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold before:invisible before:content-['Features'] before:block before:h-0 before:font-bold duration-75">Features</a>
               <img class="hidden group-hover:block" src="images/icon-arrow-up.svg" alt="">
               <img class="block group-hover:hidden" src="images/icon-arrow-down.svg" alt="">
               <!--<div class="absolute right-0 flex-col items-start hidden w-32 p-6 space-y-2 text-xs transition duration-300 transform bg-white shadow-xl top-6 group-hover:flex hover:flex group-hover:scale-125 rounded-xl">-->
-                <div class="absolute right-0 flex flex-col items-start w-32 p-6 space-y-2 text-xs transition-opacity duration-100 bg-white shadow-xl opacity-0 top-6 group-hover:opacity-100 rounded-xl">
+                <div class="absolute right-0 flex-col items-start hidden w-32 p-6 space-y-2 text-xs bg-white shadow-xl top-6 group-hover:flex rounded-xl">
                 <a href="#">
                   <div class="flex flex-row items-center justify-between space-x-2">
                     <img class="w-3" src="images/icon-todo.svg" alt=""/>
@@ -71,7 +72,7 @@
               </div>
             </div>
             <div class="relative flex items-center pb-4 group">
-              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold before:invisible before:content-['Company'] before:block before:h-0 before:font-bold">Company</a>
+              <a href="#" class="mr-2 text-xs text-gray-600 group-hover:font-bold before:invisible before:content-['Company'] before:block before:h-0 before:font-bold duration-75">Company</a>
               <img class="hidden group-hover:block" src="images/icon-arrow-up.svg" alt="">
               <img class="block group-hover:hidden" src="images/icon-arrow-down.svg" alt="">
               <div class="absolute left-0 flex-col items-start hidden w-32 p-6 space-y-2 text-xs bg-white shadow-xl top-6 group-hover:flex rounded-xl">
@@ -80,12 +81,12 @@
                 <a href="#">Blog</a>
               </div>
             </div>        
-            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['Careers'] before:block before:h-0 before:font-bold hover:font-bold">Careers</a>
-            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['About'] before:block before:h-0 before:font-bold hover:font-bold">About</a>
+            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['Careers'] before:block before:h-0 before:font-bold hover:font-bold duration-75">Careers</a>
+            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['About'] before:block before:h-0 before:font-bold hover:font-bold duration-75">About</a>
           </div>
           <div class="items-start hidden space-x-8 md:flex">
-            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['Login'] before:block before:h-0 before:font-bold hover:font-bold">Login</a>
-            <a href="#" class="w-full px-4 py-2 -mt-2 text-xs text-gray-600 border-2 border-gray-500 border-solid rounded-xl before:invisible before:content-['Register'] before:block before:h-0 before:font-bold hover:font-bold">Register</a>
+            <a href="#" class="text-xs text-gray-600 before:invisible before:content-['Login'] before:block before:h-0 before:font-bold hover:font-bold duration-75">Login</a>
+            <a href="#" class="w-full px-4 py-2 -mt-2 text-xs text-gray-600 border-2 border-gray-500 border-solid rounded-xl before:invisible before:content-['Register'] before:block before:h-0 before:font-bold hover:font-bold duration-75">Register</a>
           </div>
           <!--Hamburger button-->
           <button 
@@ -103,6 +104,7 @@
         <div 
           x-ref="menupanel"
           x-show="open"
+          x-transition.opacity
           @click.outside="close()"
           class="absolute top-0 bottom-0 right-0 z-10 w-2/3 min-h-screen p-6 bg-white md:hidden">
           <div class="flex flex-col items-start justify-center mb-8 space-y-4">
